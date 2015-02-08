@@ -475,6 +475,14 @@ namespace org.flixel
         }
 
         /**
+         * Exit the application
+         */ 
+        static public void quit()
+        {
+            FlxG.Game.Exit();
+        }
+
+        /**
          * Called by <code>FlxGame</code> to set up <code>FlxG</code> during <code>FlxGame</code>'s constructor.
          */
         static internal void setGameData(FlxGame Game, int Width, int Height)
