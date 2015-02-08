@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <SourceFile>C:/Users/Vlad/Desktop/flixel/beep.mp3</SourceFile>
+  <SourceTime>2015-02-05T06:40:53.8645218+02:00</SourceTime>
+  <DestFile>C:/Users/Vlad/Desktop/flixel/beep.xnb</DestFile>
+  <DestTime>2015-02-05T08:05:34.1489344+02:00</DestTime>
+  <Importer>Mp3Importer</Importer>
+  <ImporterTime>2015-02-03T15:43:22+02:00</ImporterTime>
+  <Processor>SongProcessor</Processor>
+  <ProcessorTime>2015-02-03T15:43:22+02:00</ProcessorTime>
+  <Parameters>
+    <Key>Quality</Key>
+    <Value>Best</Value>
+  </Parameters>
+  <Dependencies />
+  <BuildAsset />
+  <BuildOutput>
+    <string>C:/Users/Vlad/Desktop/flixel/beep.wma</string>
+  </BuildOutput>
+</PipelineBuildEvent>

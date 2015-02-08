@@ -242,6 +242,18 @@ namespace org.flixel
 			resetHelpers();
 			return this;
 		}
+        /**
+		 * This function creates a flat colored square image dynamically.
+		 * 
+		 * @param	Width		The width of the sprite you want to generate.
+		 * @param	Height		The height of the sprite you want to generate.
+		 * 
+		 * @return	This FlxSprite instance (nice for chaining stuff together, if you're into that).
+		 */
+        public FlxSprite createGraphic(int Width, int Height)
+        {
+            return createGraphic(Width, Height, Color.White);
+        }
 
 		/**
 		 * Resets some important variables for sprite optimization and rendering.
