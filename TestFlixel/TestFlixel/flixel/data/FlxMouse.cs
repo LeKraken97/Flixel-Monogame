@@ -33,14 +33,7 @@ namespace org.flixel
 #else
             get
             {
-                //if (_curMouse.X >= FlxG._game.targetLeft)
-                //{
-                    return (float)((_curMouse.X - FlxG._game.targetLeft) / FlxG.scale) - FlxG.scroll.X;
-                //}
-                //else
-                //{
-                //    return 0;
-                //}
+                return (float)((_curMouse.X - FlxG._game.targetLeft) / FlxG.scale) - FlxG.camera.getScroll().X;
             }
 #endif
         }
@@ -49,7 +42,7 @@ namespace org.flixel
 #if XBOX360
             get { return 0; }
 #else
-            get { return ((float)_curMouse.Y / FlxG.scale) - FlxG.scroll.Y; }
+            get { return ((float)_curMouse.Y / FlxG.scale) - FlxG.camera.getScroll().Y; }
 #endif
         }
 

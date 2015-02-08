@@ -14,7 +14,7 @@ namespace org.flixel
     {
         protected float _zoom;
         public Matrix _transform;
-        public Vector2 _pos;
+        private Vector2 _pos;
         protected float _rotation;
 
         /**
@@ -66,6 +66,23 @@ namespace org.flixel
         }
 
         /**
+         * Set position of the camera
+         */ 
+        public void setPosition(Vector2 position)
+        {
+            _pos = position;
+        }
+
+        /**
+         * Set position of the camera
+         */ 
+        public void setPosition(float x,float y)
+        {
+            _pos.X = x;
+            _pos.Y = y;
+        }
+
+        /**
          * Auxiliary function to move the camera
          */
         public void move(Vector2 amount)
@@ -87,20 +104,28 @@ namespace org.flixel
             get { return _pos; }
             set { _pos = value; }
         }
+
         public Matrix get_transformation(GraphicsDevice graphicsDevice)
         {
             _transform = Matrix.CreateTranslation(new Vector3(-_pos.X, -_pos.Y, 0)) *
                                          Matrix.CreateRotationZ(rotation) *
                                          Matrix.CreateScale(new Vector3(zoom, zoom, 1)) *
-                                         Matrix.CreateTranslation(new Vector3(FlxG.windowWidth * 0.5f, FlxG.windowHeight* 0.5f, 0));
+                                         Matrix.CreateTranslation(new Vector3(FlxG.windowWidth * 0.5f, FlxG.windowHeight * 0.5f, 0));
             return _transform;
         }
 
+        /**
+         *Gets the scroll of camera
+         */
+        public Vector2 getScroll() 
+        {
+            return scroll;
+        }
 
         //@desc		Tells the camera subsystem what FlxCore object to follow
         //@param	Target		The object to follow
         //@param	Lerp		How much lag the camera should have (can help smooth out the camera movement)
-        static public void follow(FlxObject Target, float Lerp)
+        public void follow(FlxObject Target, float Lerp)
         {
             followTarget = Target;
             followLerp = Lerp;
@@ -115,7 +140,7 @@ namespace org.flixel
         //@desc		Specify an additional camera component - the velocity-based "lead", or amount the camera should track in front of a sprite
         //@param	LeadX		Percentage of X velocity to add to the camera's motion
         //@param	LeadY		Percentage of Y velocity to add to the camera's motion
-        static public void followAdjust(float LeadX, float LeadY)
+        public void followAdjust(float LeadX, float LeadY)
         {
             followLead = new Vector2(LeadX, LeadY);
         }
@@ -151,7 +176,7 @@ namespace org.flixel
         /**
          * Internal function that updates the camera and parallax scrolling.
          */
-        internal static void doFollow()
+        public void doFollow()
         {
             if (followTarget != null)
             {

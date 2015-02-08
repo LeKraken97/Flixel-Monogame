@@ -437,8 +437,8 @@ namespace org.flixel
         }
         virtual public bool overlapsPoint(float X, float Y, bool PerPixel)
 		{
-			X = X + FlxU.floor(FlxG.scroll.X);
-			Y = Y + FlxU.floor(FlxG.scroll.Y);
+            X = X + FlxU.floor(FlxG.camera.getScroll().X);
+            Y = Y + FlxU.floor(FlxG.camera.getScroll().Y);
             _point = getScreenXY();
 			if((X <= _point.X) || (X >= _point.X+width) || (Y <= _point.Y) || (Y >= _point.Y+height))
 				return false;
@@ -576,8 +576,8 @@ namespace org.flixel
         virtual public Vector2 getScreenXY()
 		{
             Vector2 Point = Vector2.Zero;
-			Point.X = FlxU.floor(x + FlxU.roundingError)+FlxU.floor(FlxG.scroll.X*scrollFactor.X);
-			Point.Y = FlxU.floor(y + FlxU.roundingError)+FlxU.floor(FlxG.scroll.Y*scrollFactor.Y);
+            Point.X = FlxU.floor(x + FlxU.roundingError) + FlxU.floor(FlxG.camera.getScroll().X * scrollFactor.X);
+            Point.Y = FlxU.floor(y + FlxU.roundingError) + FlxU.floor(FlxG.camera.getScroll().Y * scrollFactor.Y);
 			return Point;
 		}
 		

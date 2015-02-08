@@ -409,8 +409,8 @@ namespace org.flixel
 		 */
         override public bool overlapsPoint(float X, float Y, bool PerPixel)
 		{
-			X = X + FlxU.floor(FlxG.scroll.X);
-			Y = Y + FlxU.floor(FlxG.scroll.Y);
+            X = X + FlxU.floor(FlxG.camera.getScroll().X);
+            Y = Y + FlxU.floor(FlxG.camera.getScroll().Y);
 			_point = getScreenXY();
             //if(PerPixel)
             //    return _framePixels.hitTest(new Point(0,0),0xFF,new Point(X-_point.x,Y-_point.y));
@@ -554,8 +554,8 @@ namespace org.flixel
         override public Vector2 getScreenXY()
         {
             Vector2 Point = Vector2.Zero;
-            Point.X = FlxU.floor(x + FlxU.roundingError) + FlxU.floor(FlxG.scroll.X * scrollFactor.X) - offset.X;
-            Point.Y = FlxU.floor(y + FlxU.roundingError) + FlxU.floor(FlxG.scroll.Y * scrollFactor.Y) - offset.Y;
+            Point.X = FlxU.floor(x + FlxU.roundingError) + FlxU.floor(FlxG.camera.getScroll().X * scrollFactor.X) - offset.X;
+            Point.Y = FlxU.floor(y + FlxU.roundingError) + FlxU.floor(FlxG.camera.getScroll().Y * scrollFactor.Y) - offset.Y;
             return Point;
         }
 
@@ -594,8 +594,8 @@ namespace org.flixel
         protected void drawBounds(SpriteBatch spriteBatch, int X, int Y)
         {
             spriteBatch.Draw(FlxG.XnaSheet,
-                new Rectangle((int)(FlxU.floor(x + FlxU.roundingError) + FlxU.floor(FlxG.scroll.X * scrollFactor.X)),
-                    (int)(FlxU.floor(y + FlxU.roundingError) + FlxU.floor(FlxG.scroll.Y * scrollFactor.Y)), (int)width, (int)height),
+                new Rectangle((int)(FlxU.floor(x + FlxU.roundingError) + FlxU.floor(FlxG.camera.getScroll().X * scrollFactor.X)),
+                    (int)(FlxU.floor(y + FlxU.roundingError) + FlxU.floor(FlxG.camera.getScroll().Y * scrollFactor.Y)), (int)width, (int)height),
                 new Rectangle(1, 1, 1, 1), getBoundingColor());
         }
 

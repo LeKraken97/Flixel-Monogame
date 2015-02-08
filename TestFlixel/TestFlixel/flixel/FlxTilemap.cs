@@ -262,7 +262,7 @@ namespace org.flixel
                     if (_rects[cri] != Rectangle.Empty)
                     {
                         spriteBatch.Draw(_tileBitmap,
-                            new Rectangle((int)x + (ix * _tileWidth) + (int)Math.Floor(FlxG.scroll.X * scrollFactor.X), (int)y + (iy * _tileHeight) + (int)Math.Floor(FlxG.scroll.Y * scrollFactor.Y), _tileWidth, _tileHeight),
+                            new Rectangle((int)x + (ix * _tileWidth) + (int)Math.Floor(FlxG.camera.getScroll().X * scrollFactor.X), (int)y + (iy * _tileHeight) + (int)Math.Floor(FlxG.camera.getScroll().Y * scrollFactor.Y), _tileWidth, _tileHeight),
                             _rects[iy * widthInTiles + ix],
                             Color.White);
                     }
@@ -514,9 +514,7 @@ namespace org.flixel
 		public void setCallback(int Tile, int Callback, int Range)
 		{
 			FlxG.log("WARNING: FlxTilemap.setCallback()\nhas been temporarily deprecated.");
-			//if(Range <= 0) return;
-			//for(var i:uint = Tile; i < Tile+Range; i++)
-			//	_callbacks[i] = Callback;
+			
 		}
 
 		/**
@@ -530,7 +528,7 @@ namespace org.flixel
         }
 		public void follow(int Border)
 		{
-            FlxG.followBounds((int)x + Border * _tileWidth, (int)y + Border * _tileHeight, (int)width - Border * _tileWidth, (int)height - Border * _tileHeight);
+            FlxG.camera.followBounds((int)x + Border * _tileWidth, (int)y + Border * _tileHeight, (int)width - Border * _tileWidth, (int)height - Border * _tileHeight);
 		}
 
 		/**

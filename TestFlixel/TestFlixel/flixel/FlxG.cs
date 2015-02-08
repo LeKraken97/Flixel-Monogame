@@ -273,7 +273,6 @@ namespace org.flixel
             FlxG.quake = new FlxQuake((int)_scale);
             FlxG.flash = new FlxFlash();
             FlxG.fade = new FlxFade();
-            FlxG.camera = new FlxCamera();
         }
         
         /**
@@ -486,6 +485,8 @@ namespace org.flixel
 
             _mute = false;
             _volume = 0.5f;
+
+            FlxG.camera = new FlxCamera();
 
             FlxG.camera.unfollow();
 

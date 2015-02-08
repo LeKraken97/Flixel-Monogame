@@ -224,7 +224,7 @@ namespace org.flixel
             }
 
             Vector2 pos = new Vector2(x, y) + origin;
-            pos += (FlxG.scroll * scrollFactor);
+            pos += (FlxG.camera.getScroll() * scrollFactor);
 
             if (backColor.A > 0)
             {

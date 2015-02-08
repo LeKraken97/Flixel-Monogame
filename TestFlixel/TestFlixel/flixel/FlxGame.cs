@@ -174,7 +174,7 @@ namespace org.flixel
         //@param	State		The class name of the state you want (e.g. PlayState)
         public void switchState(FlxState newscreen)
         {
-            FlxG.unfollow();
+            FlxG.camera.unfollow();
             FlxG.keys.reset();
             FlxG.gamepads.reset();
             FlxG.mouse.reset();
@@ -283,7 +283,7 @@ namespace org.flixel
             if (FlxG.state != null)
             {
                 //Update the camera and game state
-                FlxG.doFollow();
+                FlxG.camera.doFollow();
                 FlxG.state.update();
 
                 //Update the various special effects
