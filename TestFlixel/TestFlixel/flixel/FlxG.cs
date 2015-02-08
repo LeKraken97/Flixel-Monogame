@@ -24,8 +24,16 @@ namespace org.flixel
         private static Texture2D _xnatiles;
         private static SpriteFont _font;
         private static SpriteBatch _spriteBatch;
-
-		/**
+        
+        /**
+         * The width of the screen
+         */
+        static public int windowWidth = 800;
+        /**
+         * The height of the screen
+         */
+        static public int windowHeight = 600;
+        /**
 		 * If you build and maintain your own version of flixel,
 		 * you can give it your own name here.  Appears in the console.
 		 */
@@ -73,6 +81,8 @@ namespace org.flixel
 		 * How fast or slow time should pass in the game; default is 1.0.
 		 */
 		static public float timeScale;
+
+        static public FlxCamera camera;
 
         //@desc A reference or pointer to the current FlxState object being used by the game
         public static FlxState state
@@ -211,26 +221,6 @@ namespace org.flixel
          * Stores the basic parallax scrolling values.
          */
         static public Vector2 scroll;
-
-		/**
-		 * Reference to the active graphics buffer.
-		 * Can also be referenced via <code>FlxState.screen</code>.
-		 */
-        //static public var buffer:BitmapData;
-		/**
-		 * Internal storage system to prevent graphics from being used repeatedly in memory.
-		 */
-        //static protected var _cache:Object;
-
-		/**
-		 * Access to the Kongregate high scores and achievements API.
-		 */
-        //static public var kong:FlxKong;
-
-		/**
-		 * The support panel (twitter, reddit, stumbleupon, paypal, etc) visor thing
-		 */
-        //static public FlxPanel panel;
 		/**
 		 * A special effect that shakes the screen.  Usage: FlxG.quake.start();
 		 */
@@ -308,6 +298,7 @@ namespace org.flixel
             FlxG.quake = new FlxQuake((int)_scale);
             FlxG.flash = new FlxFlash();
             FlxG.fade = new FlxFade();
+            FlxG.camera = new FlxCamera();
         }
         //@benbaird End XNA-specific public static properties
 

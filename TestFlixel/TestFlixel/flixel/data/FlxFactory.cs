@@ -55,6 +55,10 @@ namespace org.flixel
             _graphics.PreferMultiSampling = false;
             _graphics.PreferredBackBufferWidth = resX;
             _graphics.PreferredBackBufferHeight = resY;
+
+            FlxG.windowWidth = resX;
+            FlxG.windowHeight = resY;
+
             if (_fullScreen && _graphics.IsFullScreen == false)
             {
                 _graphics.ToggleFullScreen();

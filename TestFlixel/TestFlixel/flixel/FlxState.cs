@@ -98,9 +98,7 @@ namespace org.flixel
         {
             // Render everything that should display on the screen.
 
-            //spriteBatch.Begin(SpriteBlendMode.AlphaBlend, SpriteSortMode.Immediate, SaveStateMode.None);
-            spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.NonPremultiplied, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
-            //spriteBatch.GraphicsDevice.SamplerStates[0].Filter = TextureFilter.Point;
+            spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.NonPremultiplied, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise,null,FlxG.camera.get_transformation(FlxG.Game.GraphicsDevice));
             defaultGroup.render(spriteBatch);
             spriteBatch.End();
 

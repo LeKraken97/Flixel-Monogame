@@ -68,6 +68,20 @@ namespace org.flixel
             return cos;
         }
 
+        static public float getDistanceBetweenTwoVectors(Vector2 a,Vector2 b)
+        {
+            float x = (float)Math.Pow(b.X - a.X,2);
+            float y = (float)Math.Pow(b.Y - a.Y, 2);
+            return (float)Math.Sqrt(x + y);
+        }
+
+        static public Vector2 getMiddleOf2Vectors(Vector2 a,Vector2 b)
+        {
+            float x = (a.X + b.X) * .5f;
+            float y = (a.Y + b.Y) * .5f;
+            return new Vector2(x, y);
+        }
+
         static public bool isParallel(Vector2 a, Vector2 b)
         {
             return a.X * b.Y == b.X * a.Y;   
