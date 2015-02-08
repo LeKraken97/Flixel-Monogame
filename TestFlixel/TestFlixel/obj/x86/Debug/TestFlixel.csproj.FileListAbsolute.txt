@@ -23,3 +23,6 @@ D:\FLIXELTEST\TestFlixel\TestFlixel\bin\Windows\Debug\SharpDX.RawInput.xml
 D:\FLIXELTEST\TestFlixel\TestFlixel\bin\Windows\Debug\SharpDX.Direct3D9.xml
 D:\FLIXELTEST\TestFlixel\TestFlixel\obj\x86\Debug\TestFlixel.exe
 D:\FLIXELTEST\TestFlixel\TestFlixel\obj\x86\Debug\TestFlixel.pdb
+E:\C#\Flixel-Monogame\TestFlixel\TestFlixel\obj\x86\Debug\TestFlixel.exe
+E:\C#\Flixel-Monogame\TestFlixel\TestFlixel\obj\x86\Debug\TestFlixel.pdb
+E:\C#\Flixel-Monogame\TestFlixel\TestFlixel\obj\x86\Debug\TestFlixel.csprojResolveAssemblyReference.cache

@@ -2,9 +2,6 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
-#if !WINDOWS_PHONE
-using Microsoft.Xna.Framework.GamerServices;
-#endif
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
@@ -15,7 +12,7 @@ namespace org.flixel
     {
         //primary display buffer constants
 #if !WINDOWS_PHONE
-        private int resX = 600; //DO NOT CHANGE THESE VALUES!!
+        private int resX = 680; //DO NOT CHANGE THESE VALUES!!
         private int resY = 420;  //your game should only be concerned with the
                                  //resolution parameters used when you call
                                  //initGame() in your FlxGame class.
@@ -49,30 +46,21 @@ namespace org.flixel
                 resY = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
             }
 
-            //we don't need no new-fangled pixel processing
-            //in our retro engine!
+            FlxG.Game = this;
+        }
+
+        protected override void Initialize()
+        {
+            //load up the master class, and away we go!
             _graphics.PreferMultiSampling = false;
-            //set preferred screen resolution. This is NOT
-            //the same thing as the game's actual resolution.
             _graphics.PreferredBackBufferWidth = resX;
             _graphics.PreferredBackBufferHeight = resY;
-            //make sure we're actually running fullscreen if
-            //fullscreen preference is set.
             if (_fullScreen && _graphics.IsFullScreen == false)
             {
                 _graphics.ToggleFullScreen();
             }
             _graphics.ApplyChanges();
 
-            FlxG.Game = this;
-#if !WINDOWS_PHONE
-            Components.Add(new GamerServicesComponent(this));
-#endif
-        }
-
-        protected override void Initialize()
-        {
-            //load up the master class, and away we go!
             _flixelgame = new FlxGame();
             Components.Add(_flixelgame);
             base.Initialize();

@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System.IO;
 
 namespace org.flixel
 {
@@ -87,14 +87,32 @@ namespace org.flixel
             }
         }
 
+        public static Texture2D loadTexture(String path)
+        {
+            return FlxG.Content.Load<Texture2D>(path);
+        }
+
+        public static String loadFile(String path)
+        {
+            //load map from file
+            string sMap;
+            using (Stream file = TitleContainer.OpenStream("Content/" + path))
+            {
+                StreamReader sr = new StreamReader(file);
+                sMap = sr.ReadToEnd().Replace("\r", "");
+                sr.Close();
+            }
+            return sMap;
+        }
+
         /**
          * The width of the screen in game pixels.
          */
-        public static int width = 1280;
+        public static int width = 800;
         /**
          * The height of the screen in game pixels.
          */
-        public static int height = 720;
+        public static int height = 600;
 
         public static Color backColor = Color.Black;
 
@@ -231,7 +249,7 @@ namespace org.flixel
          * 
          * @param	Data		Anything you want to log to the console.
          */
-        public static void log(string Data) { _game._console.log(Data); }
+        public static void log(object Data) { _game._console.log(""+Data); Console.WriteLine(Data); }
 
         /**
          * Set <code>pause</code> to true to pause the game, all sounds, and display the pause popup.
@@ -283,7 +301,7 @@ namespace org.flixel
             _content = Game.Content;
 
             _spriteBatch = new SpriteBatch(gd);
-            //_font = _content.Load<SpriteFont>("flixel/deffont");
+            _font = _content.Load<SpriteFont>("flixel/deffont");
             _xnatiles = _content.Load<Texture2D>("flixel/xna_tiles");
 
             _scale = ((float)_game.targetWidth / (float)width);

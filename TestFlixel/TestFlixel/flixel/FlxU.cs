@@ -59,6 +59,25 @@ namespace org.flixel
 			return (N1 >= N2)?N1:N2;
 		}
 
+        static public float getCosBetween2Vectors(Vector2 a, Vector2 b)
+        {
+            float div = (float)(Math.Sqrt(Math.Pow(a.X, 2) + Math.Pow(b.Y, 2)));
+            float div2 = (float)(Math.Sqrt(Math.Pow(b.X, 2) + Math.Pow(a.Y, 2)));
+            float real = div * div2;
+            float cos = ((a.X * b.X) + (a.Y * b.Y)) / real;
+            return cos;
+        }
+
+        static public bool isParallel(Vector2 a, Vector2 b)
+        {
+            return a.X * b.Y == b.X * a.Y;   
+        }
+
+        static public bool isPerpendicular(Vector2 a, Vector2 b)
+        {
+            return a.X * b.X + a.Y * b.Y == 0;
+        }
+
 		/**
 		 * Generates a random number.  NOTE: To create a series of predictable
 		 * random numbers, add the random number you generate each time
