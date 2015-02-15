@@ -219,6 +219,19 @@ namespace org.flixel
             return ((uint)((Alpha > 1) ? Alpha : (Alpha * 255)) & 0xFF) << 24 | (Red & 0xFF) << 16 | (Green & 0xFF) << 8 | (Blue & 0xFF);
 		}
 
+	public static double rad2Deg(double angle)
+        {
+            return angle * (180.0 / Math.PI);
+        }
+        /**
+         * The first object will look at the other
+         * @param   object1    This is the object that will look at the other
+         * @param   object2    Reference object for the first object
+         */
+        public static void lookAt(FlxObject object1,FlxObject object2)
+        {
+            object1.angle = (float)rad2Deg(Math.Atan2(object2.y - object1.y, object2.x - object1.x));
+        }
 		/**
 		 * Generate a Flash <code>uint</code> color from HSB components.
 		 * 
