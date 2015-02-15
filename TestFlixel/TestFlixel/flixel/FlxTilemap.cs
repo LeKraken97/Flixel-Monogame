@@ -82,7 +82,8 @@ namespace org.flixel
 		 * Rendering helper.
 		 */
 		protected Rectangle _flashRect;
-		protected Rectangle _flashRect2;
+        protected Rectangle _flashRect2;
+        protected List<BlockPoint> blocks = new List<BlockPoint>();
 
 		protected int[] _data;
 		protected List<Rectangle> _rects;
@@ -282,7 +283,6 @@ namespace org.flixel
 			int d;
 			
 			int dd;
-			List<BlockPoint> blocks = new List<BlockPoint>();
 			
 			//First make a list of all the blocks we'll use for collision
 			int ix = (int)FlxU.floor((Core.x - x)/_tileWidth);

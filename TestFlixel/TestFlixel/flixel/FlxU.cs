@@ -59,6 +59,17 @@ namespace org.flixel
 			return (N1 >= N2)?N1:N2;
 		}
 
+        static public float bound(float value, float min, float max)
+        {
+            if (value >= max)
+                value = max;
+            if (value <= min)
+                value = min;
+
+            return value;
+
+        }
+
         static public float getCosBetween2Vectors(Vector2 a, Vector2 b)
         {
             float div = (float)(Math.Sqrt(Math.Pow(a.X, 2) + Math.Pow(b.Y, 2)));

@@ -207,20 +207,26 @@ namespace org.flixel
 		 */
         internal void pauseGame()
 		{
-            //if((x != 0) || (y != 0))
-            //{
-            //    x = 0;
-            //    y = 0;
-            //}
-            //flash.ui.Mouse.show();
 			_paused = true;
-			//stage.frameRate = _frameratePaused;
 		}
+        
+        int frameRate = 0;
+        int frameCounter = 0;
+        TimeSpan elapsedTime = TimeSpan.Zero;
 
         //@desc		This is the main game loop
         public override void Update(GameTime gameTime)
         {
             PlayerIndex pi;
+
+            elapsedTime += gameTime.ElapsedGameTime;
+
+            if (elapsedTime > TimeSpan.FromSeconds(1))
+            {
+                elapsedTime -= TimeSpan.FromSeconds(1);
+                frameRate = frameCounter;
+                frameCounter = 0;
+            }
 
             //Frame timing
             FlxG.getTimer = (uint)gameTime.TotalGameTime.TotalMilliseconds;
@@ -302,6 +308,9 @@ namespace org.flixel
         public override void Draw(GameTime gameTime)
         {
             //Render the screen to our internal game-sized back buffer.
+            frameCounter++;
+            string fps = string.Format("fps: {0}", frameRate);
+
             GraphicsDevice.SetRenderTarget(backRender);
             if (FlxG.state != null)
             {
@@ -309,6 +318,12 @@ namespace org.flixel
                 FlxG.state.render(FlxG.spriteBatch);
 
                 FlxG.spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.NonPremultiplied, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise);
+
+                if (FlxG.debug) { 
+                    FlxG.spriteBatch.DrawString(FlxG.Font, fps, new Vector2(FlxG.width - 140, 33), Color.Black, 0, Vector2.Zero, 2, SpriteEffects.None, 1);
+                    FlxG.spriteBatch.DrawString(FlxG.Font, fps, new Vector2(FlxG.width - 140, 32), Color.White, 0, Vector2.Zero, 2, SpriteEffects.None, 1);
+                }
+
                 if (FlxG.flash.exists)
                     FlxG.flash.render(FlxG.spriteBatch);
                 if (FlxG.fade.exists)
@@ -316,9 +331,9 @@ namespace org.flixel
 
                 if (FlxG.mouse.cursor.visible)
                     FlxG.mouse.cursor.render(FlxG.spriteBatch);
-
+                
                 FlxG.spriteBatch.End();
-
+                
                 FlxG.state.postProcess(FlxG.spriteBatch);
             }
             //Render sound tray if necessary
