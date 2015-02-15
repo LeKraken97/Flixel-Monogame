@@ -69,7 +69,6 @@ namespace org.flixel
 
         //Animation helpers
         private List<FlxAnim> _animations;
-		private uint _flipped;
 		protected FlxAnim _curAnim;
 		protected int _curFrame;
         protected int _caf;
@@ -146,20 +145,13 @@ namespace org.flixel
             finished = false;
             facing = Flx2DFacing.NotUsed;
             _animations = new List<FlxAnim>();
-            _flipped = 0;
             _curAnim = null;
             _curFrame = 0;
             _caf = 0;
             _frameTimer = 0;
 
-            //_mtx = new Matrix();
             _callback = null;
-            //if (_gfxSprite == null)
-            //{
-            //    _gfxSprite = new Sprite();
-            //    _gfx = _gfxSprite.graphics;
-            //}
-
+            
             if (SimpleGraphic == null)
                 createGraphic(8, 8, color);
             else
@@ -193,16 +185,11 @@ namespace org.flixel
 		{
             _stretchToFit = false;
             _tex = Graphic;
-			if(Reverse)
-				_flipped = (uint)Graphic.Width>>1;
-			else
-				_flipped = 0;
+
 			if(Width == 0)
 			{
 				if(Animated)
 					Width = Graphic.Height;
-				else if(_flipped > 0)
-                    Width = (int)((float)Graphic.Width * 0.5f);
 				else
                     Width = Graphic.Width;
 			}
@@ -363,8 +350,6 @@ namespace org.flixel
             {
                 if (_stretchToFit)
                 {
-                    //if (width == 7)
-                    //    vc = vc;
                     spriteBatch.Draw(_tex, new Rectangle((int)pos.X, (int)pos.Y, (int)width, (int)height),
                                     _flashRect, _color,
                                     _radians, vc, SpriteEffects.None, 0);
@@ -382,7 +367,7 @@ namespace org.flixel
                                 _flashRect, _color,
                                 _radians, vc, scale, SpriteEffects.None, 0);
             }
-            else
+            else if(_facing2d == Flx2DFacing.Left)
             {
                 spriteBatch.Draw(_tex, pos,
                                 _flashRect, _color,
@@ -412,9 +397,6 @@ namespace org.flixel
             X = X + FlxU.floor(FlxG.camera.getScroll().X);
             Y = Y + FlxU.floor(FlxG.camera.getScroll().Y);
 			_point = getScreenXY();
-            //if(PerPixel)
-            //    return _framePixels.hitTest(new Point(0,0),0xFF,new Point(X-_point.x,Y-_point.y));
-			//else
             if (_stretchToFit == false)
             {
                 if ((X <= _point.X) || (X >= _point.X + frameWidth) || (Y <= _point.Y) || (Y >= _point.Y + frameHeight))
@@ -581,10 +563,6 @@ namespace org.flixel
                     ry = (uint)(rx / w) * (uint)frameHeight;
                     rx %= w;
                 }
-
-                //handle reversed sprites
-                if ((_facing2d == Flx2DFacing.Left) && (_flipped > 0))
-                    rx = (_flipped << 1) - rx - (uint)frameWidth;
 
                 _flashRect = new Rectangle((int)rx, (int)ry, frameWidth, frameHeight);
 			}
