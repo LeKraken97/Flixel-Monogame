@@ -11,17 +11,9 @@ namespace org.flixel.physics
 		private BodyDef bodyDef;
 		private Body body;
 
-		public B2FlxShape (float x,float y,Shape shapeType) : base(x,y)
+		public B2FlxShape (float x, float y) : base (x, y)
 		{
-			shape = shapeType;
-			fixtureDef = new FixtureDef ();
-			bodyDef = new BodyDef ();
-			body = B2FlxWorld.world.CreateBody(bodyDef);
-		}
-
-		public B2FlxShape (float x,float y) : base(x,y)
-		{
-			shape = new PolygonShape();
+		
 		}
 
 		public void makeBox(BodyType type,float width,float height,float elasticity,float friction,float mass)
@@ -29,11 +21,13 @@ namespace org.flixel.physics
 			shape = new PolygonShape();
 			((PolygonShape)(shape)).SetAsBox (width, height);
 
+			fixtureDef = new FixtureDef ();
 			fixtureDef.shape = shape;
 			fixtureDef.restitution = elasticity;
 			fixtureDef.friction = friction;
 			fixtureDef.density = mass;
 
+			bodyDef = new BodyDef ();
 			bodyDef.type = type;
 			bodyDef.position = new Vector2(x,y);
 
@@ -46,11 +40,13 @@ namespace org.flixel.physics
 			shape = new CircleShape();
 			((CircleShape)(shape))._radius = radius;
 
+			fixtureDef = new FixtureDef ();
 			fixtureDef.shape = shape;
 			fixtureDef.restitution = elasticity;
 			fixtureDef.friction = friction;
 			fixtureDef.density = mass;
 
+			bodyDef = new BodyDef ();
 			bodyDef.type = type;
 			bodyDef.position = new Vector2(x,y);
 
@@ -58,7 +54,7 @@ namespace org.flixel.physics
 			body.CreateFixture(fixtureDef);
 		}
 
-		/*
+		/**
 		 * Is this shape static or dynamic?
 		 */ 
 		public void setShapeType(BodyType type)
@@ -66,7 +62,7 @@ namespace org.flixel.physics
 			bodyDef.type = type;
 		}
 
-		/*
+		/**
 		 *Set the shape of this object.Ex: Polygon,Circle
 		 */
 		public void setShapeType(Shape shape)
@@ -75,19 +71,18 @@ namespace org.flixel.physics
 			fixtureDef.shape = shape;
 		}
 
+		/**
+		 *Set the position of this Shape
+		 */
 		public void setPosition(Vector2 pos)
 		{
-			bodyDef.position = pos;
-		}
-
-		public void setPosition(float x,float y)
-		{
-			bodyDef.position.X = x;
-			bodyDef.position.Y = y;	
+			body.Position = pos;
 		}
 
 		public override void update ()
 		{
+			base.x = body.Position.X;
+			base.y = body.Position.Y;
 			base.update ();
 		}
 
