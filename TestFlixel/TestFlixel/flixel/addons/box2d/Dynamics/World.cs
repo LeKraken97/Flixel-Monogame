@@ -1195,7 +1195,7 @@ namespace org.flixel.physics
         internal int _bodyCount;
         internal int _jointCount;
 
-        internal bool _allowSleep;
+        public bool _allowSleep;
 
         internal Body _groundBody;
 
