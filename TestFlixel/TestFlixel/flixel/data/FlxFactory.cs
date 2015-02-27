@@ -12,8 +12,8 @@ namespace org.flixel
     {
         //primary display buffer constants
 #if !WINDOWS_PHONE
-        private int resX = 680; //DO NOT CHANGE THESE VALUES!!
-        private int resY = 420;  //your game should only be concerned with the
+        private int resX = 800; //DO NOT CHANGE THESE VALUES!!
+        private int resY = 600;  //your game should only be concerned with the
                                  //resolution parameters used when you call
                                  //initGame() in your FlxGame class.
 #else

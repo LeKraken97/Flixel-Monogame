@@ -5,8 +5,10 @@ using System.Text;
 using Microsoft.Xna;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+#if WINDOWS
 using Microsoft.Xna.Framework.Utilities;
 using Microsoft.Xna.Framework.Windows;
+#endif
 
 namespace org.flixel
 {
