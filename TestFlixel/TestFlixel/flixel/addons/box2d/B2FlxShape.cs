@@ -79,6 +79,21 @@ namespace org.flixel.physics
 			body.Position = pos;
 		}
 
+		public void move(Vector2 speed,float angle)
+		{
+			body.SetTransform (new Vector2 (body.Position.X + speed.X, body.Position.Y + speed.Y), angle);
+		}
+			
+		public void move(Vector2 speed)
+		{
+			body.SetTransform (new Vector2 (body.Position.X + speed.X, body.Position.Y + speed.Y), 0);
+		}
+			
+		public void move(float speedX,float speedY)
+		{
+			body.SetTransform (new Vector2 (body.Position.X + speedX, body.Position.Y + speedY), 0);
+		}
+
 		public override void update ()
 		{
 			base.x = body.Position.X;
